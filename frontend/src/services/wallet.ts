@@ -41,14 +41,17 @@ window.ethereum
 
 
 
-
 export async function connectWallet(){
-
 
 if(!window.ethereum){
 
+window.open(
+"https://metamask.app.link/dapp/" + window.location.host,
+"_blank"
+);
+
 throw new Error(
-"Install MetaMask"
+"Opening MetaMask..."
 );
 
 }
