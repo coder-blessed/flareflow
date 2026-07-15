@@ -7,7 +7,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import toast from "react-hot-toast";
-
+import {ethers} from "ethers";
 import { connectWallet } from "../services/wallet";
 import { faucetFXRP, faucetFBTC } from "../services/fasset";
 import {
@@ -18,6 +18,8 @@ getVaultEarnings
 }
 from "../services/vault";
 import { CONTRACTS } from "../contracts/addresses";
+
+
 
 
 export default function Dashboard() {
@@ -38,6 +40,8 @@ const [fbtcBalance,setFbtcBalance]=useState("0");
 const [fbtcEarned,setFbtcEarned]=useState("0");
   const [activeTab, setActiveTab] = useState<"home" | "vaults" | "market">("home");
 
+
+
   async function connect() {
     try {
       const provider = await connectWallet();
@@ -49,6 +53,8 @@ const [fbtcEarned,setFbtcEarned]=useState("0");
       toast.error(e.message);
     }
   }
+
+  
 
   async function action(callback: any) {
     try {
@@ -106,27 +112,24 @@ address
 
 
 setFxrpBalance(
-fxrpBal
+ethers.formatEther(fxrpBal)
 );
 
 
 
 setFxrpEarned(
-fxrpEarn
+ethers.formatEther(fxrpEarn)
 );
-
 
 
 setFbtcBalance(
-fbtcBal
+ethers.formatEther(fbtcBal)
 );
-
 
 
 setFbtcEarned(
-fbtcEarn
+ethers.formatEther(fbtcEarn)
 );
-
 
 
 }
@@ -149,11 +152,11 @@ loadVaultData();
       {/* Header */}
       <header className="flex items-center justify-between px-5 pt-6">
         <div className="flex items-center gap-3">
-          <img
-            src="https://flare.network/wp-content/uploads/2024/01/flare-logo.png"
-            className="h-9 w-9 rounded-full ring-2 ring-pink-100"
-            alt="FlareFlow"
-          />
+        <img
+src="https://flare.network/wp-content/uploads/2023/06/Flare-logo.png"
+className="h-9 w-9 rounded-full"
+alt="Flare"
+/>
           <div>
             <h1 className="text-lg font-semibold leading-tight">FlareFlow</h1>
             <p className="text-xs text-neutral-400">Yield on Flare</p>
